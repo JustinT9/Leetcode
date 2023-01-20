@@ -23,7 +23,7 @@ def longestSubstring1(s):
         ret = max(ret, r - l + 1)
     return ret 
 
-# O(m) space complexity where m represents the number of unique words 
+# O(m) space complexity where m represents the number of unique words v
 def lengthOfLongestSubstring(s):
     # initialize variables and dictionary to store/track duplicates 
     start = maxLength = 0
