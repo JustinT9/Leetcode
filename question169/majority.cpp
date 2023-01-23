@@ -22,6 +22,7 @@ public:
 };
 
 // an alternative solution I created 
+// sort takes nlogn time complexity 
 class Solution(object):
     def majorityElement(self, nums):
         nums.sort() 
