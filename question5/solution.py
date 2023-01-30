@@ -53,7 +53,7 @@ def longestPalindrome(self, s):
 			
         # filling the dp table
         for i in range(len(s)-1,-1,-1):
-				# j starts from the i location : to only work on the upper side of the diagonal 
+            # j starts from the i location : to only work on the upper side of the diagonal 
             for j in range(i+1,len(s)):  
                 if s[i] == s[j]:  #if the chars mathces
                     # if len slicied sub_string is just one letter if the characters are equal, we can say they are palindomr dp[i][j] =True 
@@ -66,7 +66,33 @@ def longestPalindrome(self, s):
                 
         return longest_palindrom
 
-
+# another version 
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        
+        n = len(s)
+        # Form a bottom-up dp 2d array
+        # dp[i][j] will be 'true' if the string from index i to j is a palindrome. 
+        dp = [[False] * n  for _ in range(n)]
+        
+        ans = ''
+        # every string with one character is a palindrome
+        for i in range(n):
+            dp[i][i] = True
+            ans = s[i]
+            
+        maxLen = 1
+        for start in range(n-1, -1, -1):
+            for end in range(start+1, n):             
+				# palindrome condition
+                if s[start] == s[end]:
+                    # if it's a two char. string or if the remaining string is a palindrome too
+                    if end - start == 1 or dp[start+1][end-1]:
+                        dp[start][end] = True
+                        if maxLen < end - start + 1:
+                            maxLen = end - start + 1
+                            ans = s[start: end+ 1]
+        return ans
 
 class Solution:
     #Manacher algorithm
